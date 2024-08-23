@@ -30,9 +30,8 @@ const OrderPage = () => {
 
   const navigate = useNavigate();
 
-  // 전화번호 입력 시 하이픈 자동 추가 및 숫자만 허용
   const handlePhoneNumberChange = (e) => {
-    let value = e.target.value.replace(/\D/g, ""); // 숫자만 허용
+    let value = e.target.value.replace(/\D/g, ""); 
     if (value.length > 3 && value.length <= 7) {
       value = `${value.slice(0, 3)}-${value.slice(3)}`;
     } else if (value.length > 7) {
@@ -41,13 +40,11 @@ const OrderPage = () => {
     setUserData({ ...userData, phoneNumber: value });
   };
 
-  // 이메일 형식 검증 함수
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  // 필드 검증 및 경고 메시지 표시
   const validateFields = () => {
     const newErrorFields = {};
 
@@ -77,20 +74,18 @@ const OrderPage = () => {
     return Object.keys(newErrorFields).length === 0;
   };
 
-  // 체크박스를 클릭할 때 처리
   const handleSelectItem = (id) => {
     setSelectedItems((prev) => {
       const newSelection = { ...prev };
       if (newSelection[id]) {
         delete newSelection[id];
       } else {
-        newSelection[id] = { quantity: 1 }; // 기본 수량 1로 설정
+        newSelection[id] = { quantity: 1 }; 
       }
       return newSelection;
     });
   };
 
-  // 수량 변경 처리
   const handleQuantityChange = (id, quantity) => {
     if (quantity > 0) {
       setSelectedItems((prev) => ({
@@ -100,17 +95,15 @@ const OrderPage = () => {
     } else {
       setSelectedItems((prev) => {
         const newSelection = { ...prev };
-        delete newSelection[id]; // 수량이 0 이하이면 선택 해제
+        delete newSelection[id]; 
         return newSelection;
       });
     }
   };
 
-  // 대여 신청 버튼 클릭 시 검증
   const handleSubmit = async () => {
     if (!validateFields()) return;
 
-    // 선택된 대여 물품이 있는지 확인
     if (Object.keys(selectedItems).length === 0) {
       alert("대여 물품을 선택해 주세요.");
       return;
@@ -119,7 +112,6 @@ const OrderPage = () => {
     setShowConfirm(true);
   };
 
-  // 확인 버튼 클릭 시 API 호출
   const confirmSubmit = async () => {
     const orderData = {
       userName: userData.name,
@@ -149,7 +141,6 @@ const OrderPage = () => {
     }
   };
 
-  // 총 금액 계산
   const totalAmount = Object.keys(selectedItems).reduce((total, id) => {
     const item = items.find((item) => item.id === id);
     if (item && selectedItems[id].quantity > 0) {
@@ -243,7 +234,6 @@ const OrderPage = () => {
   );
 };
 
-// Styled Components
 const Container = styled.div`
   padding: 20px;
   background-color: #f9f9f9;
@@ -270,6 +260,8 @@ const Input = styled.input`
     border: 1px solid ${(props) => (props.isError ? "red" : "blue")};
   }
 `;
+
+export default OrderPage;
 
 const DateContainer = styled.div`
   display: flex;
@@ -356,5 +348,3 @@ const SubmitButton = styled.button`
     background-color: #0056b3;
   }
 `;
-
-export default OrderPage;
