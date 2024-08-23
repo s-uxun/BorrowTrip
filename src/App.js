@@ -53,7 +53,7 @@ const GlobalStyle = createGlobalStyle`
     align-items: center;
     font-family: "Pretendard";
     padding: 20px 20px 0;
-    background-color: #F9F9F9;
+    background-color: #fff;
     box-sizing: border-box;
   }
 `
