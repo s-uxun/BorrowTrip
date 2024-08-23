@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import instance from "axios";
 
 /*
 const DumData = {
@@ -17,7 +19,8 @@ const DumData = {
   */
  
 
-const Check = ({orderNumber}) => {
+const Check = () => {
+    const { orderNumber } = useParams(); 
     const [orderData, setOrderData] = useState(null);
     const [error, setError] = useState(null);
   
@@ -25,7 +28,7 @@ const Check = ({orderNumber}) => {
     useEffect(() => {
         const fetchOrderData = async () => {
             try {
-                const response = await axios.get(
+                const response = await instance.get(
                   `${process.env.REACT_APP_SERVER_PORT}/rental?orderNumber=${orderNumber}`
                 );
             setOrderData(response.data);
