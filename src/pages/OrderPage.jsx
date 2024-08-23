@@ -122,12 +122,13 @@ const OrderPage = () => {
       startDate: userData.startDate,
       finishDate: userData.endDate,
       items: Object.keys(selectedItems).reduce((acc, id) => {
-        const item = selectedItems[id];
-        if (item.quantity > 0) {
-          acc[id] = item.quantity;
+        const item = items.find((item) => item.id === id);
+        if (item && selectedItems[id].quantity > 0) {
+          acc[item.name] = selectedItems[id].quantity;
         }
         return acc;
       }, {}),
+      price: totalAmount,
     };
 
     try {
@@ -136,7 +137,6 @@ const OrderPage = () => {
         orderData
       );
 
-      console.log(response);
       const orderNumber = response.data.orderNumber;
       navigate(`/check/${orderNumber}`);
     } catch (error) {
@@ -161,58 +161,58 @@ const OrderPage = () => {
         <Title>대여 신청</Title>
       </Header>
       <Container>
-      <InputWrapper>
-      <Label>이름</Label>
-      <Input
-        ref={nameRef}
-        type="text"
-        placeholder="홍길동"
-        value={userData.name}
-        onChange={(e) => setUserData({ ...userData, name: e.target.value })}
-        isError={errorFields.name}
-      />
-    </InputWrapper>
-    <InputWrapper>
-      <Label>전화번호</Label>
-      <Input
-        ref={phoneNumberRef}
-        type="text"
-        placeholder="010-0000-0000"
-        value={userData.phoneNumber}
-        onChange={handlePhoneNumberChange}
-        maxLength={13}
-        isError={errorFields.phoneNumber}
-      />
-    </InputWrapper>
-    <InputWrapper>
-      <Label>이메일</Label>
-      <Input
-        ref={emailRef}
-        type="email"
-        placeholder="000@0000.com"
-        value={userData.email}
-        onChange={(e) => setUserData({ ...userData, email: e.target.value })}
-        isError={errorFields.email}
-      />
-    </InputWrapper>
-    <DateContainer>
-    <Label>대여 기간</Label>
-      <DateInput
-        ref={startDateRef}
-        type="date"
-        value={userData.startDate}
-        onChange={(e) => setUserData({ ...userData, startDate: e.target.value })}
-        isError={errorFields.startDate}
-      />
-      <Tilde>~</Tilde>
-      <DateInput
-        ref={endDateRef}
-        type="date"
-        value={userData.endDate}
-        onChange={(e) => setUserData({ ...userData, endDate: e.target.value })}
-        isError={errorFields.endDate}
-      />
-    </DateContainer>
+        <InputWrapper>
+          <Label>이름</Label>
+          <Input
+            ref={nameRef}
+            type="text"
+            placeholder="홍길동"
+            value={userData.name}
+            onChange={(e) => setUserData({ ...userData, name: e.target.value })}
+            isError={errorFields.name}
+          />
+        </InputWrapper>
+        <InputWrapper>
+          <Label>전화번호</Label>
+          <Input
+            ref={phoneNumberRef}
+            type="text"
+            placeholder="010-0000-0000"
+            value={userData.phoneNumber}
+            onChange={handlePhoneNumberChange}
+            maxLength={13}
+            isError={errorFields.phoneNumber}
+          />
+        </InputWrapper>
+        <InputWrapper>
+          <Label>이메일</Label>
+          <Input
+            ref={emailRef}
+            type="email"
+            placeholder="000@0000.com"
+            value={userData.email}
+            onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+            isError={errorFields.email}
+          />
+        </InputWrapper>
+        <DateContainer>
+          <Label>대여 기간</Label>
+          <DateInput
+            ref={startDateRef}
+            type="date"
+            value={userData.startDate}
+            onChange={(e) => setUserData({ ...userData, startDate: e.target.value })}
+            isError={errorFields.startDate}
+          />
+          <Tilde>~</Tilde>
+          <DateInput
+            ref={endDateRef}
+            type="date"
+            value={userData.endDate}
+            onChange={(e) => setUserData({ ...userData, endDate: e.target.value })}
+            isError={errorFields.endDate}
+          />
+        </DateContainer>
         {items.map((item) => (
           <ItemContainer key={item.id}>
             <Checkbox
@@ -267,7 +267,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
   box-sizing: border-box;
   font-family: Pretendard;
-`;
+;`
 
 const Header = styled.div`
   display: flex;
@@ -277,7 +277,7 @@ const Header = styled.div`
   width: 100%;
   padding: 25px 0;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-`;
+;`
 
 const BackButton = styled.div`
   cursor: pointer;
@@ -289,7 +289,7 @@ const BackButton = styled.div`
     height: 20px;
   }
   margin-left: 20px;
-`;
+;`
 
 const Title = styled.h1`
   color: #000;
@@ -298,7 +298,7 @@ const Title = styled.h1`
   font-weight: 600;
   letter-spacing: -0.5px;
   margin: 0; 
-`;
+;`
 
 const Container = styled.div`
   padding: 20px;
@@ -310,19 +310,19 @@ const Container = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`;
+;`
 
 const InputWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 15px;
-`;
+;`
 
 const Label = styled.label`
-  width: 100px; /* 레이블의 고정 너비 설정 */
+  width: 100px; 
   font-size: 16px;
   color: #000;
-`;
+;`
 
 const Input = styled.input`
   flex: 1;
@@ -336,24 +336,24 @@ const Input = styled.input`
     outline: none;
     border-bottom: 1px solid ${(props) => (props.isError ? "red" : "#1B4AB9")};
   }
-`;
+;`
 
 const DateInput = styled.input`
   display: flex;
   align-items: center;
-`;
+;`
 
 const DateContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 25px 0;
-`;
+;`
 
 const Tilde = styled.span`
   font-size: 20px;
   margin: 0 13px;
-`;
+;`
 
 const ItemContainer = styled.div`
   display: flex;
@@ -365,7 +365,7 @@ const ItemContainer = styled.div`
   border-radius: 12px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border: 1px solid #e0e0e0;
-`;
+;`
 
 const ItemName = styled.span`
   flex: 1;
@@ -376,12 +376,12 @@ const ItemName = styled.span`
   &:hover {
     text-decoration: underline;
   }
-`;
+;`
 
 const QuantityContainer = styled.div`
   display: flex;
   align-items: center;
-`;
+;`
 
 const QuantityButton = styled.button`
   background-color: #356df0;
@@ -398,27 +398,27 @@ const QuantityButton = styled.button`
   &:hover {
     background-color: #1B4AB9;
   }
-`;
+;`
 
 const QuantityDisplay = styled.span`
   font-size: 18px;
   margin: 0 7px;
   min-width: 20px;
   text-align: center;
-`;
+;`
 
 const Checkbox = styled.input`
   margin-right: 10px;
   width: 18px;
   height: 18px;
   border-radius: 4px;
-`;
+;`
 
 const TotalAmount = styled.div`
   font-size: 18px;
   margin: 40px 0 15px;
   text-align: right;
-`;
+;`
 
 const SubmitButton = styled.button`
   font-family: Pretendard;
@@ -434,7 +434,7 @@ const SubmitButton = styled.button`
   &:hover {
     background-color: #1B4AB9;
   }
-`;
+;`
 
 const Notice = styled.p`
 color: #C3C3C3;
@@ -443,4 +443,4 @@ font-style: normal;
 font-weight: 400;
 line-height: 1.7;
 margin-left: 3px;
-`;
+;`

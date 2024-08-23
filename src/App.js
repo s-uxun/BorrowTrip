@@ -34,7 +34,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/order" element={<OrderPage />} />
           <Route path="/list" element={<ListPage />} />
-          <Route path="/check" element={<Check />} />
+          <Route path="/check/:orderNumber" element={<CheckPage />} />
         </Routes>
       </Router>
     </>
@@ -54,6 +54,6 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Pretendard";
     padding: 20px 20px 0;
     background-color: #fff;
-    box-sizing: border-box;
+    border: 2px solid #f4f4f4;
   }
 `

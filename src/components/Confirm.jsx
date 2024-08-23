@@ -71,7 +71,7 @@ export const ModalBackground = styled.div`
 export const ModalContainer = styled.div`
   width: 290px;
   height: 50%;
-  padding: 27px 15px;
+  padding: 37px 25px;
   background: white;
   display: flex;
   justify-content: space-between;
