@@ -7,6 +7,7 @@ import Confirm from "../components/Confirm";
 import axios from "axios";
 
 
+
 const OrderPage = () => {
   const items = useItemStore((state) => state.items);
   const updateItemQuantity = useItemStore((state) => state.updateItemQuantity);
@@ -111,9 +112,9 @@ const OrderPage = () => {
         />
       </div>
       {items.map((item) => (
-        <div key={item.id} onClick={() => setShowDetail(item)}>
-          <span>{item.icon}</span>
-          <span>{item.name}</span>
+        <div key={item.id}>
+          <span  onClick={() => setShowDetail(item)}>{item.icon}</span>
+          <span  onClick={() => setShowDetail(item)}>{item.name}</span>
           <button onClick={() => handleQuantityChange(item.id, item.quantity - 1)}>-</button>
           <input
             type="number"
