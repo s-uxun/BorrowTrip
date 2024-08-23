@@ -8,6 +8,7 @@ import { createGlobalStyle } from "styled-components";
 import LandingPage from "./pages/LandingPage.jsx";
 import ListPage from "./pages/ListPage.jsx";
 import OrderPage from "./pages/OrderPage.jsx";
+import CheckPage from "./pages/CheckPage.jsx";
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/order" element={<OrderPage />} />
           <Route path="/list" element={<ListPage />} />
+          <Route path="/check/${orderNumber}" element={<CheckPage />} />
         </Routes>
       </Router>
     </>
@@ -50,8 +52,8 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     align-items: center;
     font-family: "Pretendard";
-    padding: 20px 20px 0;
-    background-color: #F9F9F9;
+    background-color: #fff;
+    border: 0.5px solid black;
     box-sizing: border-box;
   }
 `
