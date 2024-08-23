@@ -33,8 +33,7 @@ const LandingPage = () => {
             <ApplyButton onClick={handleNavigateToOrder}>대여 신청</ApplyButton>
         </Apply>
         <Check>
-            <Img3 src={Image3} alt="대여내역" />
-            <OverlayButton onClick={handleNavigateToList}>대여 내역 확인</OverlayButton>
+            <Img3 src={Image3} alt="대여내역" onClick={handleNavigateToList}></Img3>
         </Check>
         <Text><p>픽업장소</p> <p>Munich Airport Center - Ebene 03</p></Text>
         </WhiteBox>
