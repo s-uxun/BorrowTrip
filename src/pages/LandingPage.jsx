@@ -14,7 +14,6 @@ const Image7 = `${process.env.PUBLIC_URL}/asset/Landing/물품신청.svg`;
 
 const LandingPage = () => {
     const navigate = useNavigate();
-
     const handleNavigateToOrder = () => {
         navigate("/order"); 
       };
@@ -208,3 +207,4 @@ const Img7 = styled.img`
   width: auto;
   height: auto;
 `;
+
