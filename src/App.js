@@ -8,6 +8,7 @@ import { createGlobalStyle } from "styled-components";
 import LandingPage from "./pages/LandingPage.jsx";
 import ListPage from "./pages/ListPage.jsx";
 import OrderPage from "./pages/OrderPage.jsx";
+import Check from "./components/Check.jsx";
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/order" element={<OrderPage />} />
           <Route path="/list" element={<ListPage />} />
+          <Route path="/check" element={<Check />} />
         </Routes>
       </Router>
     </>

@@ -5,6 +5,7 @@ import useItemStore from "../stores/ItemStore";
 import Detail from "../components/Detail";
 import Confirm from "../components/Confirm";
 import instance from "axios";
+import Check from "../components/Check";
 
 const OrderPage = () => {
   const items = useItemStore((state) => state.items);
@@ -13,6 +14,9 @@ const OrderPage = () => {
   const [showDetail, setShowDetail] = useState(null);
   const [showConfirm, setShowConfirm] = useState(false);
   const [errorFields, setErrorFields] = useState({});
+  const [orderNumber, setOrderNumber] = useState(null);
+  const [showCheck, setShowCheck] = useState(false);
+
 
   const [userData, setUserData] = useState({
     name: "",
@@ -27,7 +31,6 @@ const OrderPage = () => {
   const emailRef = useRef(null);
   const startDateRef = useRef(null);
   const endDateRef = useRef(null);
-
   const navigate = useNavigate();
 
   const handlePhoneNumberChange = (e) => {
@@ -135,7 +138,12 @@ const OrderPage = () => {
       );
 
       console.log(response);
-      navigate("/list");
+      const orderNumber = response.data.orderNumber;
+      setOrderNumber(orderNumber);
+      setShowCheck(true);
+
+      console.log(orderNumber);
+      
     } catch (error) {
       console.error("Order submission failed:", error);
     }
@@ -230,6 +238,23 @@ const OrderPage = () => {
           onConfirm={confirmSubmit}
         />
       )}
+
+      {showCheck && (
+        <CompleteContainer>
+          <CompleteMessage>대여 신청이 완료되었습니다.</CompleteMessage>
+          <OrderContainer>
+            <Label>예약번호</Label>
+            <Value>{orderNumber}</Value>
+          </OrderContainer>
+          <SmallMessage>예약번호로 대여 내역을 조회할 수 있으니 예약번호를 기억해주세요.</SmallMessage>
+        <Check
+          orderNumber={orderNumber}
+        />
+          <HomeButton>홈으로 돌아가기</HomeButton>
+
+        </CompleteContainer>
+      )}
+
     </Container>
   );
 };
@@ -347,4 +372,76 @@ const SubmitButton = styled.button`
   &:hover {
     background-color: #0056b3;
   }
+`;
+
+// 제출완료 모달
+
+const CompleteContainer = styled.div`
+  padding: 20px;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+`;
+
+
+const CompleteMessage = styled.h1`
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+`;
+
+
+const OrderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+`;
+
+
+const Label = styled.span`
+  font-size: 16px;
+  font-weight: bold;
+  color: #888;
+`;
+
+const Value = styled.span`
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+`;
+
+const SmallMessage = styled.p`
+  font-size: 12px;
+  color: #888;
+  margin-top: 10px;
+`;
+
+
+const HomeButton = styled.button`
+display: flex;
+width: 250px;
+height: 40px;
+padding: 9px 57px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 9px;
+background: var(--key_1, #1B4AB9);
+
+color: #FFF;
+text-align: center;
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+
+&:hover {
+  background-color: #242f79;
+}
 `;
