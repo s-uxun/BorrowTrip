@@ -8,7 +8,7 @@ import { createGlobalStyle } from "styled-components";
 import LandingPage from "./pages/LandingPage.jsx";
 import ListPage from "./pages/ListPage.jsx";
 import OrderPage from "./pages/OrderPage.jsx";
-import CheckPage from "./pages/CheckPage.jsx";
+import Check from "./components/Check.jsx";
 
 function App() {
 
@@ -52,8 +52,8 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     align-items: center;
     font-family: "Pretendard";
+    padding: 20px 20px 0;
     background-color: #fff;
     border: 2px solid #f4f4f4;
-    box-sizing: border-box;
   }
 `

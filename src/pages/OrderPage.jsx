@@ -220,7 +220,7 @@ const OrderPage = () => {
               checked={!!selectedItems[item.id]}
               onChange={() => handleSelectItem(item.id)}
             />
-            <span>{item.icon}</span>
+            <img src={item.icon}/>
             <ItemName onClick={() => setShowDetail(item)}>{item.name}</ItemName>
             {selectedItems[item.id] && (
               <QuantityContainer>
