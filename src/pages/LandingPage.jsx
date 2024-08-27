@@ -139,11 +139,11 @@ const Img3 = styled.img`
 
 const OverlayButton = styled.button`
   position: absolute;
-  right: 25px;  /* 버튼을 오른쪽으로 배치 */
+  right: 25px;  
   top: 49%;
   width: 100px;
   height: 40px;
-  transform: translateY(-50%);  /* 버튼을 수직으로 가운데 정렬 */
+  transform: translateY(-50%);  
   color: #000;
   border: none;
   border-radius: 5px;
