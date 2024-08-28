@@ -54,6 +54,5 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Pretendard";
     padding: 20px 20px 0;
     background-color: #fff;
-    border: 2px solid #f4f4f4;
   }
 `
