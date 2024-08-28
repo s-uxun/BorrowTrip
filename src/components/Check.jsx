@@ -4,21 +4,6 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import instance from "axios";
 
-/*
-const DumData = {
-    userName: "홍길동",
-    phoneNumber: "010-1234-5678",
-    items: {
-      "침구 세트": 1,
-      "식기 세트": 1
-    },
-    startDate: "2024.12.01",
-    finishDate: "2024.12.31",
-    price: 100000
-  };
-  */
- 
-
 const Check = () => {
     const { orderNumber } = useParams(); 
     const [orderData, setOrderData] = useState(null);
@@ -34,7 +19,7 @@ const Check = () => {
             setOrderData(response.data);
             console.log(response.data)
           } catch (err) {
-            setError("주문 정보를 불러오는 데 실패했습니다.");
+            setError("주문 정보가 없습니다.");
             console.error(err);
           }
         };
